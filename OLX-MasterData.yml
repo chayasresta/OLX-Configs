@@ -1,0 +1,28 @@
+server:
+  port:
+    9000
+spring:
+  application:
+    name: OLX-MasterData
+  datasource:
+    url: jdbc:mysql://localhost:3306/masterdb
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  config:
+      import:
+      - configserver:http://localhost:7777
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0
